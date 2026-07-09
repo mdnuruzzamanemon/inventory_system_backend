@@ -41,6 +41,28 @@ export class DropService {
     return result;
   }
 
+  async getUpcomingDrops() {
+    const now = new Date();
+
+    const drops = await Drop.findAll({
+      where: {
+        startTime: { [Op.gt]: now },
+      },
+      include: [
+        {
+          model: Product,
+          as: 'products',
+        },
+      ],
+      order: [['startTime', 'ASC']],
+    });
+
+    return drops.map((drop) => {
+      const dropJson = drop.toJSON() as unknown as Record<string, unknown>;
+      return dropJson;
+    });
+  }
+
   async getActiveDrops() {
     const now = new Date();
 

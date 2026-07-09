@@ -12,6 +12,11 @@ export class DropController {
     const drops = await dropService.getActiveDrops();
     res.status(200).json({ success: true, data: drops });
   });
+
+  getUpcoming = asyncHandler(async (_req: Request, res: Response) => {
+    const drops = await dropService.getUpcomingDrops();
+    res.status(200).json({ success: true, data: drops });
+  });
 }
 
 export const dropController = new DropController();

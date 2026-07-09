@@ -7,5 +7,6 @@ const router = Router();
 
 router.post('/', validate(createDropSchema), dropController.create);
 router.get('/active', dropController.getActive);
+router.get('/upcoming', dropController.getUpcoming);
 
 export default router;
