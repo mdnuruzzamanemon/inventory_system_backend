@@ -1,8 +1,10 @@
 import { Sequelize } from 'sequelize';
+import pg from 'pg';
 import { env } from './env';
 
 const sequelize = new Sequelize({
   dialect: 'postgres',
+  dialectModule: pg,
   host: env.db.host,
   port: env.db.port,
   database: env.db.name,
