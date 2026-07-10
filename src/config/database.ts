@@ -9,6 +9,14 @@ const sequelize = new Sequelize({
   username: env.db.user,
   password: env.db.password,
   logging: env.nodeEnv === 'development' ? console.log : false,
+  dialectOptions: env.db.ssl
+    ? {
+        ssl: {
+          require: true,
+          rejectUnauthorized: false,
+        },
+      }
+    : undefined,
   pool: {
     max: 20,
     min: 0,
